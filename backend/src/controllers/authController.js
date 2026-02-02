@@ -64,7 +64,8 @@ exports.login = async (req, res) => {
         console.log(`🔍 Login attempt for: ${email}, User found: ${!!user}`);
 
         if (!user) {
-            return res.status(401).json({ success: false, message: 'Invalid credentials' });
+            console.log(`❌ User not found: ${email}`);
+            return res.status(401).json({ success: false, message: 'Debug: User not found in database' });
         }
 
         // Check password
@@ -72,7 +73,8 @@ exports.login = async (req, res) => {
         console.log(`🔑 Password match result: ${isMatch}`);
 
         if (!isMatch) {
-            return res.status(401).json({ success: false, message: 'Invalid credentials' });
+            console.log(`❌ Password mismatch for: ${email}`);
+            return res.status(401).json({ success: false, message: 'Debug: Password mismatch' });
         }
 
         // Update last active
