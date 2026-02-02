@@ -33,7 +33,7 @@ exports.protect = async (req, res, next) => {
 
 // Generate JWT Token
 exports.getSignedJwtToken = (id) => {
-    return jwt.sign({ id }, process.env.JWT_SECRET, {
-        expiresIn: process.env.JWT_EXPIRE,
+    return jwt.sign({ id }, process.env.JWT_SECRET || 'secret', {
+        expiresIn: process.env.JWT_EXPIRE || '30d',
     });
 };
