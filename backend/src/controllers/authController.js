@@ -14,8 +14,6 @@ if (process.env.GOOGLE_CLIENT_ID) {
 exports.register = async (req, res) => {
     try {
         const { name, email, password } = req.body;
-        console.log(`📝 Registration attempt for: ${email}`);
-
         // Check if user exists
         const existingUser = await User.findOne({ email });
         if (existingUser) {
@@ -65,7 +63,7 @@ exports.login = async (req, res) => {
 
         if (!user) {
             console.log(`❌ User not found: ${email}`);
-            return res.status(401).json({ success: false, message: 'Debug: User not found in database' });
+            return res.status(401).json({ success: false, message: 'Invalid credentials' });
         }
 
         // Check password
@@ -74,7 +72,7 @@ exports.login = async (req, res) => {
 
         if (!isMatch) {
             console.log(`❌ Password mismatch for: ${email}`);
-            return res.status(401).json({ success: false, message: 'Debug: Password mismatch' });
+            return res.status(401).json({ success: false, message: 'Invalid credentials' });
         }
 
         // Update last active
