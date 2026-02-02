@@ -1,0 +1,248 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* CodeStream Design System - Cyberpunk Glassmorphism */
+
+@layer base {
+  :root {
+    /* Core backgrounds - deep space blues */
+    --background: 230 25% 7%;
+    --foreground: 210 40% 98%;
+
+    /* Glass panels */
+    --card: 230 30% 12%;
+    --card-foreground: 210 40% 98%;
+    --popover: 230 30% 10%;
+    --popover-foreground: 210 40% 98%;
+
+    /* Neon cyan primary */
+    --primary: 185 100% 50%;
+    --primary-foreground: 230 25% 7%;
+
+    /* Deep purple secondary */
+    --secondary: 270 60% 50%;
+    --secondary-foreground: 210 40% 98%;
+
+    /* Muted surfaces */
+    --muted: 230 25% 15%;
+    --muted-foreground: 220 15% 60%;
+
+    /* Magenta accent */
+    --accent: 320 100% 60%;
+    --accent-foreground: 210 40% 98%;
+
+    /* Destructive */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    /* Borders and inputs */
+    --border: 230 30% 20%;
+    --input: 230 30% 18%;
+    --ring: 185 100% 50%;
+
+    --radius: 0.75rem;
+
+    /* Sidebar */
+    --sidebar-background: 230 30% 8%;
+    --sidebar-foreground: 220 15% 70%;
+    --sidebar-primary: 185 100% 50%;
+    --sidebar-primary-foreground: 230 25% 7%;
+    --sidebar-accent: 270 60% 50%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 230 30% 18%;
+    --sidebar-ring: 185 100% 50%;
+
+    /* Custom neon colors */
+    --neon-cyan: 185 100% 50%;
+    --neon-magenta: 320 100% 60%;
+    --neon-purple: 270 60% 60%;
+    --neon-green: 150 100% 50%;
+    --neon-orange: 30 100% 55%;
+    --neon-yellow: 50 100% 55%;
+    --neon-blue: 210 100% 60%;
+
+    /* Glass properties */
+    --glass-bg: 230 30% 12% / 0.6;
+    --glass-border: 230 30% 25% / 0.5;
+    --glass-blur: 20px;
+
+    /* Syntax highlighting */
+    --syntax-keyword: 320 100% 65%;
+    --syntax-string: 150 100% 50%;
+    --syntax-number: 30 100% 60%;
+    --syntax-comment: 220 15% 45%;
+    --syntax-function: 185 100% 60%;
+    --syntax-variable: 270 80% 70%;
+    --syntax-operator: 210 40% 80%;
+  }
+
+  /* Dracula Theme */
+  .theme-dracula {
+    --background: 231 15% 18%;
+    --foreground: 60 30% 96%;
+    --card: 232 14% 22%;
+    --primary: 265 89% 78%;
+    --secondary: 135 94% 65%;
+    --accent: 326 100% 74%;
+    --muted: 232 14% 25%;
+    --border: 232 14% 28%;
+    --neon-cyan: 191 97% 77%;
+    --neon-magenta: 326 100% 74%;
+    --neon-purple: 265 89% 78%;
+    --neon-green: 135 94% 65%;
+  }
+
+  /* Minimal Dark Theme */
+  .theme-minimal {
+    --background: 0 0% 8%;
+    --foreground: 0 0% 90%;
+    --card: 0 0% 12%;
+    --primary: 0 0% 100%;
+    --secondary: 0 0% 50%;
+    --accent: 0 0% 70%;
+    --muted: 0 0% 18%;
+    --border: 0 0% 20%;
+    --neon-cyan: 0 0% 100%;
+    --neon-magenta: 0 0% 80%;
+    --neon-purple: 0 0% 60%;
+    --neon-green: 0 0% 100%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  code,
+  pre,
+  .mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+@layer components {
+
+  /* Glassmorphism panels */
+  .glass-panel {
+    @apply bg-card/60 backdrop-blur-xl border border-white/10 rounded-lg shadow-2xl;
+  }
+
+  .glass-panel-strong {
+    @apply bg-card/80 backdrop-blur-2xl border border-white/15 rounded-lg shadow-2xl;
+  }
+
+  /* Neon glow effects */
+  .neon-glow-cyan {
+    box-shadow: 0 0 20px hsl(var(--neon-cyan) / 0.3),
+      0 0 40px hsl(var(--neon-cyan) / 0.15),
+      inset 0 0 20px hsl(var(--neon-cyan) / 0.05);
+  }
+
+  .neon-glow-magenta {
+    box-shadow: 0 0 20px hsl(var(--neon-magenta) / 0.3),
+      0 0 40px hsl(var(--neon-magenta) / 0.15);
+  }
+
+  .neon-glow-purple {
+    box-shadow: 0 0 20px hsl(var(--neon-purple) / 0.3),
+      0 0 40px hsl(var(--neon-purple) / 0.15);
+  }
+
+  /* Neon text */
+  .neon-text-cyan {
+    color: hsl(var(--neon-cyan));
+    text-shadow: 0 0 10px hsl(var(--neon-cyan) / 0.5),
+      0 0 20px hsl(var(--neon-cyan) / 0.3);
+  }
+
+  .neon-text-magenta {
+    color: hsl(var(--neon-magenta));
+    text-shadow: 0 0 10px hsl(var(--neon-magenta) / 0.5),
+      0 0 20px hsl(var(--neon-magenta) / 0.3);
+  }
+
+  /* Animated border glow */
+  .animated-border {
+    position: relative;
+  }
+
+  .animated-border::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    padding: 2px;
+    background: linear-gradient(135deg,
+        hsl(var(--neon-cyan)),
+        hsl(var(--neon-purple)),
+        hsl(var(--neon-magenta)),
+        hsl(var(--neon-cyan)));
+    background-size: 300% 300%;
+    animation: gradient-shift 4s ease infinite;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0.5;
+  }
+
+  @keyframes gradient-shift {
+
+    0%,
+    100% {
+      background-position: 0% 50%;
+    }
+
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  /* Sync indicator pulse */
+  .sync-pulse {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-glow {
+
+    0%,
+    100% {
+      opacity: 1;
+      box-shadow: 0 0 5px currentColor;
+    }
+
+    50% {
+      opacity: 0.5;
+      box-shadow: 0 0 15px currentColor;
+    }
+  }
+
+  /* Scrollbar styling */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: hsl(var(--muted));
+    border-radius: 4px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+    border-radius: 4px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground));
+  }
+}
