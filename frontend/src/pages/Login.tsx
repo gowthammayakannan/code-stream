@@ -71,7 +71,15 @@ export default function Login() {
 
             if (response.data.success) {
                 toast.dismiss(loadingToast);
-                saveUserAndNavigate(response.data);
+                if (isRegister) {
+                    toast.success('Registration successful! Please sign in with your new credentials.', {
+                        duration: 5000,
+                    });
+                    setIsRegister(false); // Switch to login view
+                    setFormData({ ...formData, password: '' }); // Clear password for security
+                } else {
+                    saveUserAndNavigate(response.data);
+                }
             }
         } catch (error: any) {
             toast.dismiss(loadingToast);
