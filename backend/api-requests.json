@@ -1,0 +1,99 @@
+{
+    "info": {
+        "name": "Collaborative Code Canvas API",
+        "description": "Backend API for real-time collaborative code editing",
+        "version": "1.0.0"
+    },
+    "requests": [
+        {
+            "name": "Health Check",
+            "method": "GET",
+            "url": "http://localhost:3002/api/health"
+        },
+        {
+            "name": "Register User",
+            "method": "POST",
+            "url": "http://localhost:3002/api/auth/register",
+            "headers": {
+                "Content-Type": "application/json"
+            },
+            "body": {
+                "name": "John Doe",
+                "email": "john@example.com",
+                "password": "password123"
+            }
+        },
+        {
+            "name": "Login User",
+            "method": "POST",
+            "url": "http://localhost:3002/api/auth/login",
+            "headers": {
+                "Content-Type": "application/json"
+            },
+            "body": {
+                "email": "john@example.com",
+                "password": "password123"
+            }
+        },
+        {
+            "name": "Get Current User",
+            "method": "GET",
+            "url": "http://localhost:3002/api/auth/me",
+            "headers": {
+                "Authorization": "Bearer YOUR_TOKEN_HERE"
+            }
+        },
+        {
+            "name": "Create Room",
+            "method": "POST",
+            "url": "http://localhost:3002/api/rooms",
+            "headers": {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer YOUR_TOKEN_HERE"
+            },
+            "body": {
+                "name": "My Coding Room",
+                "language": "typescript"
+            }
+        },
+        {
+            "name": "Get All Rooms",
+            "method": "GET",
+            "url": "http://localhost:3002/api/rooms",
+            "headers": {
+                "Authorization": "Bearer YOUR_TOKEN_HERE"
+            }
+        },
+        {
+            "name": "Join Room",
+            "method": "POST",
+            "url": "http://localhost:3002/api/rooms/ROOM_ID/join",
+            "headers": {
+                "Authorization": "Bearer YOUR_TOKEN_HERE"
+            }
+        },
+        {
+            "name": "Get File Tree",
+            "method": "GET",
+            "url": "http://localhost:3002/api/rooms/ROOM_ID/files",
+            "headers": {
+                "Authorization": "Bearer YOUR_TOKEN_HERE"
+            }
+        },
+        {
+            "name": "Create File",
+            "method": "POST",
+            "url": "http://localhost:3002/api/rooms/ROOM_ID/files",
+            "headers": {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer YOUR_TOKEN_HERE"
+            },
+            "body": {
+                "name": "main.ts",
+                "type": "file",
+                "language": "typescript",
+                "content": "console.log('Hello World');"
+            }
+        }
+    ]
+}
