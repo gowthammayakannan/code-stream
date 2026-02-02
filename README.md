@@ -2,6 +2,8 @@
 
 **CodeStream** is a high-performance, real-time collaborative code editor designed for modern development teams. It enables multiple developers to write, execute, and sync code instantly across the globe with zero latency.
 
+🔗 **Live Demo: [code-stream-chi.vercel.app](https://code-stream-chi.vercel.app)**
+
 ![CodeStream Header](https://raw.githubusercontent.com/gowthammayakannan/code-stream/main/frontend/public/favicon.svg)
 
 ## ✨ Key Features
