@@ -14,15 +14,18 @@ if (process.env.GOOGLE_CLIENT_ID) {
 exports.register = async (req, res) => {
     try {
         const { name, email, password } = req.body;
+        console.log(`📝 Registration attempt for: ${email}`);
 
         // Check if user exists
         const existingUser = await User.findOne({ email });
         if (existingUser) {
+            console.log(`⚠️ User already exists: ${email}`);
             return res.status(400).json({ success: false, message: 'User already exists' });
         }
 
         // Create user
         const user = await User.create({ name, email, password });
+        console.log(`✅ User created successfully: ${user.email}`);
 
         // Generate token
         const token = getSignedJwtToken(user._id);
@@ -39,6 +42,7 @@ exports.register = async (req, res) => {
             },
         });
     } catch (error) {
+        console.error('❌ Registration Error:', error);
         res.status(500).json({ success: false, message: error.message });
     }
 };
@@ -57,12 +61,16 @@ exports.login = async (req, res) => {
 
         // Check for user
         const user = await User.findOne({ email }).select('+password');
+        console.log(`🔍 Login attempt for: ${email}, User found: ${!!user}`);
+
         if (!user) {
             return res.status(401).json({ success: false, message: 'Invalid credentials' });
         }
 
         // Check password
         const isMatch = await user.comparePassword(password);
+        console.log(`🔑 Password match result: ${isMatch}`);
+
         if (!isMatch) {
             return res.status(401).json({ success: false, message: 'Invalid credentials' });
         }
