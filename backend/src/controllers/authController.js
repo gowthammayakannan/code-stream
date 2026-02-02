@@ -272,7 +272,10 @@ exports.githubLogin = async (req, res) => {
             },
         });
     } catch (error) {
-        console.error('GitHub Auth Error:', error);
-        res.status(401).json({ success: false, message: 'GitHub authentication failed' });
+        console.error('GitHub Auth Error:', error.response?.data || error.message);
+        res.status(401).json({
+            success: false,
+            message: `GitHub Auth Error: ${error.response?.data?.error_description || error.message}`
+        });
     }
 };

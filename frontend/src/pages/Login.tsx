@@ -44,10 +44,10 @@ export default function Login() {
                 toast.dismiss(loadingToast);
                 saveUserAndNavigate(response.data);
             }
-        } catch (error) {
+        } catch (error: any) {
             console.error('GitHub Auth Error:', error);
             toast.dismiss(loadingToast);
-            toast.error('GitHub authentication failed.');
+            toast.error(error.response?.data?.message || 'GitHub authentication failed.');
         }
     };
 
