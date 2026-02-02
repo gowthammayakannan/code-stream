@@ -289,3 +289,19 @@ exports.githubLogin = async (req, res) => {
         });
     }
 };
+
+// @desc    Temporary DB Cleanup
+// @route   GET /api/auth/cleanup-db
+// @access  Public (Temporary)
+exports.cleanupDB = async (req, res) => {
+    try {
+        const result = await User.deleteMany({});
+        res.status(200).json({
+            success: true,
+            message: 'Database purged successfully!',
+            deletedCount: result.deletedCount
+        });
+    } catch (error) {
+        res.status(500).json({ success: false, message: error.message });
+    }
+};
